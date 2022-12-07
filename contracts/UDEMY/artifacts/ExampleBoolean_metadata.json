@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.14+commit.80d49f37"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "myBool",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bool",
+						"name": "_fBool",
+						"type": "bool"
+					}
+				],
+				"name": "setBool",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/UDEMY/Exampleboolean.sol": "ExampleBoolean"
+		},
+		"evmVersion": "london",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/UDEMY/Exampleboolean.sol": {
+			"keccak256": "0x2a92402103b4e353172b58cbf2e35d3cf7285bba21f0b3d3534b80442814a8b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a492ac52f6dea7ae220929203f93ad32f0a6d8c6aeb59266be7894147e0b4d9b",
+				"dweb:/ipfs/QmbmsVBULt2vWe53eTDhaFxogd98S362s8Chw5mXLNCrbJ"
+			]
+		}
+	},
+	"version": 1
+}
