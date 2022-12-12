@@ -17,7 +17,7 @@ single smart contract to represent multiple types of tokens (both fungible and n
 // import "https://github.com/OpenZepplin/openzepplin-contracts/contracts/token/ERC721/ERC721.sol";
 import "erc721a/contracts/ERC721A.sol";
 
-//define name your contract, symbol(in the ERC721 constructor then inherit ERC721,
+//define name your contract, symbol(in the ERC721 constructor then inherit ERC721 -,
 // contract Hellonft is ERC721("HelloNft", "HNFT") {
 contract Hellonft is ERC721A("HelloNft", "HNFT") {
     
