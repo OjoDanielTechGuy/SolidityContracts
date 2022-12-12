@@ -11,5 +11,6 @@ contract Azuki is ERC721A {
     function mint(uint256 quantity) external payable {
         // _safeMint's second argument now takes in a quantity, not a tokenId.
         _safeMint(msg.sender, quantity);
+        //
     }
 }
