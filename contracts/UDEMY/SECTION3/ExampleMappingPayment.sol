@@ -19,7 +19,7 @@ contract MappingPayment {
         return address(this).balance;//holds the address and display the balance of the address
     }
 
-    function sendMoney() public payable{
+    function sendMoney() public payable {
         /**When someone sends money using the "sendMoney" function, 
         we track the msg.value (amount in Wei) with the balanceReceived mapping for the 
         person who interacted with the Smart Contract.
@@ -40,6 +40,20 @@ contract MappingPayment {
         uint balanceToSend = balanceReceived[msg.sender];
         balanceReceived[msg.sender] = 0; //resetting mapping
         _to.transfer(balanceToSend); //transfer the amount equivalent to the address
+    }
+
+    //Adding Partial Withdrawals
+    function partialWithdrawal(address payable _to, uint _amount) public {
+                
+        /**
+        When someone withdraws funds, we check if the amount he wants to withdraw 
+        is smaller or equal than the amount he previously deposited. 
+        If yes, then we deduct the amount from his balance and send out the funds.
+        */
+
+        require(_amount <= balanceReceived[msg.sender], "not enought funds to withdraw");
+        balanceReceived[msg.sender] -= _amount;
+        _to.transfer(_amount);
     }
 
 }
