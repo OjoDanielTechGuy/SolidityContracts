@@ -27,7 +27,7 @@ contract ERC20CoffeeToken is ERC20, AccessControl {
 
     //an internal function can be called internally from the smart contract
     function mint(address to, uint256 amount) public onlyRole(MINTER_ROLE) {
-        _mint(to, amount);
+        _mint(to, amount * 10 ** decimals());
     }
 
     function buyOneCoffe() public {
@@ -37,8 +37,8 @@ contract ERC20CoffeeToken is ERC20, AccessControl {
 
     //function to buy Coffee from an address
     function buyOneCoffeFrom(address _account) public {
-        _spendAllowance(_account, _msgSender(), 1);
-        _burn(_account, 1);
+        _spendAllowance(_account, _msgSender(), decimals());
+        _burn(_account, 1 * 10 ** decimals());
         emit CoffeePurchased(_msgSender(), _account);
     }
 }
