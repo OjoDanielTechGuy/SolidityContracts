@@ -21,12 +21,16 @@ pragma solidity ^0.8.15;
 * - Features: Mintable, Auto IncrementIds, URI Storage, Ownable.
 */
 
-import "nft/node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "nft/node_modules/@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "nft/node_modules/@openzeppelin/contracts/access/Ownable.sol";
-import "nft/node_modules/@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract SpaceBear is ERC721, ERC721URIStorage, Ownable {
+//debugging via console.log
+import "@ganache/console.log/console.sol";
+
+// contract SpaceBear is ERC721, ERC721URIStorage, Ownable {
+contract SpaceBear is ERC721, Ownable {
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -37,26 +41,48 @@ contract SpaceBear is ERC721, ERC721URIStorage, Ownable {
         return "https://ethereum-blockchain-developer.com/2022-06-nft-truffle-hardhat-foundry/nftdata/";
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    // function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to) public onlyOwner {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        _setTokenURI(tokenId, uri);
+        // _setTokenURI(tokenId, uri);
+    }
+
+    /*new function added for buyToken
+    buyToken function, which get 0.1 ether for the first token, 0.2 ether for the second token, etc*/
+    function buyToken() public payable {
+        uint256 tokenId = _tokenIdCounter.current();
+
+        //code added for debugging through console
+        console.log("got here", tokenId, msg.value);
+
+        // require(msg.value == tokenId * 0.1 ether, "Funds not available for transaction");
+
+        //fixing error when console shows the tokenId as null
+        require(msg.value == (tokenId + 1) * 0.1 ether, "Funds not available for transaction");
+
+        _tokenIdCounter.increment();
+        _safeMint(msg.sender, tokenId);
     }
 
     // The following functions are overrides required by Solidity.
 
-    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
+    function _burn(uint256 tokenId) internal override(ERC721) {
+    // function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
 
     function tokenURI(uint256 tokenId)
         public
-        view
-        override(ERC721, ERC721URIStorage)
+        // view
+        pure
+        // override(ERC721, ERC721URIStorage)
+        override(ERC721)
         returns (string memory)
     {
-        return super.tokenURI(tokenId);
+        // return super.tokenURI(tokenId);                
+        return string (abi.encodePacked(_baseURI(), "_", tokenId + 1, ".json"));
     }
 }
 
