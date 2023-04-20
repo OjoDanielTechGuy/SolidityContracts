@@ -44,11 +44,12 @@
 // require('dotenv').config();
 // const { MNEMONIC, PROJECT_ID } = process.env;
 
+//changes made for HDWalletProvider
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const fs = require("fs");
 const mnemonicPhrase = fs.readFileSync(".secret").toString().trim();
 const infuraProjectID = fs.readFileSync(".infura").toString().trim();
-//..more codes
+// ..more codes
 
 module.exports = {
   /**
@@ -59,28 +60,32 @@ module.exports = {
    * network from the command line, e.g
    *
    * $ truffle test --network <network-name>
-   */
+   */  
 
   networks: {
-      // ganache: {
-      //   host: "127.0.0.1",  // Localhost (default: none)
-      //   port: 8545,         // Standard Ethereum port (default: none)
-      //   network_id: "*",  // Any network (default: none)
+      ganache: {
+        host: "127.0.0.1",  // Localhost (default: none)
+        port: 8545,         // Standard Ethereum port (default: none)
+        network_id: "*",  // Any network (default: none)
+      },
+      
+      // goerli: {
+      //     // must be a thunk, otherwise truffle commands may hang in CI
+      //   provider: () =>
+        
+      //     new HDWalletProvider({
+      //       mnemonic: {
+      //         phrase: mnemonicPhrase
+      //       },
+      //       providerOrUrl: "https://goerli.infura.io/v3/" +infuraProjectID
+      //     }),
+      //     timeoutBlocks: 200,
+      //     gas: 4465030,
+      //     gasPrice: 214821248484,
+      //   network_id: '5',
+      //   // network_id: '11155111',
       // },
 
-      goerli: {
-          // must be a thunk, otherwise truffle commands may hang in CI
-        provider: () =>
-        
-          new HDWalletProvider({
-            mnemonic: {
-              phrase: mnemonicPhrase
-            },
-            providerOrUrl: "https://goerli.infura.io/v3/" +infuraProjectID
-          }),
-
-        network_id: '5',
-      },
     // Useful for testing. The `development` name is special - truffle uses it by default
     // if it's defined here and no other network is specified at the command line.
     // You should run a client (like ganache, geth, or parity) in a separate terminal
@@ -131,11 +136,11 @@ module.exports = {
     solc: {
       version: "0.8.19",      // Fetch exact version from solc-bin (default: truffle's version)
       // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
+      settings: {          // See the solidity docs for advice about optimization and evmVersion
+       optimizer: {
+         enabled: false,
+         runs: 200
+      },
       //  evmVersion: "byzantium"
       // }
     }
@@ -161,4 +166,11 @@ module.exports = {
   //     }
   //   }
   // }
-};
+
+  //adding plugin to verify source code with truffle 
+  // plugins: ['truffle-plugin-verify'],
+  // api_keys: {
+  //   etherscan: fs.readFileSync('.etherscan').toString().trim()
+  //   }
+  }
+}
