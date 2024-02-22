@@ -37,5 +37,50 @@ contract loopContract {
                 return false;
             }
     }
+}
 
+//Looping practice
+//1. Create a contract myLoopingPracticeContract and place the code within
+//2. Create a list that ranges from 1 to 20 called longList
+//3. Create a list called numbersList of the following numbers 1, 4, 34, 56
+//4. Create a function that loops through numbersList and returns a true value if the number
+// that the user inputs exists in the list otherwise it should return false
+//5. Create a function that loops through and returns how many even numbers there are in the long list
+
+contract myLoopingPracticeContract {
+
+    //list that ranges from 1 to 20
+    uint[] longList = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+
+    //list called numbersList
+    uint[] numbersList = [0,1,4,34,56];
+
+    //function that loops through numbersList
+    function loopNumbersList(uint _userInput) public view returns(bool) {        
+        
+        bool numberExists = false;
+        
+        //looping through
+        for(uint i = 0; i < numbersList.length; i++) {
+            
+            //condition to return true if user inputs number in numbersList
+            if(numbersList[i] == _userInput) {
+                numberExists = true;
+            }
+        return numberExists;
+        }
+    }
+
+    //function that loops through and return even numbers
+    function returnEvenNumbers() public view returns(uint) {
+        uint count; //to count number of even number in list
+
+        //looping
+        for (uint i = 0; i < longList.length; i++) {
+            if(longList[i] % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
 }
