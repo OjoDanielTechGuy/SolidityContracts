@@ -67,8 +67,8 @@ contract myLoopingPracticeContract {
             if(numbersList[i] == _userInput) {
                 numberExists = true;
             }
-        return numberExists;
         }
+        return numberExists;
     }
 
     //function that loops through and return even numbers
