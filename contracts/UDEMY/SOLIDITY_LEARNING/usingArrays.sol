@@ -32,4 +32,10 @@ contract usingArrays {
     function getLength() public view returns(uint) {
         return myArray.length;
     }
+
+    function remove(uint _i) public (){
+        delete myArray[_i];
+    //when you delete in the array, the length remains the same
+
+    }
 }
