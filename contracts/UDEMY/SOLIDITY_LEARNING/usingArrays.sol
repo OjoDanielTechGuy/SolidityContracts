@@ -37,5 +37,43 @@ contract usingArrays {
         delete myArray[_i];
     //when you delete in the array, the length remains the same
 
+     //Exercise create a function that can fully remove an item from an array
+    //1. //*REMOVE ELEMENT // * PRESERVE INTEGRITY
+
+    //1. Create an empty array called changeArray;
+    uint[] public changeArray;
+
+    //2. Create a function called removeElement which sets the index arguement of the array to the last element 
+    //in the array
+    //3. remove the last index from that function with the pop method
+    //4. remove the element 2 from the array when contract is called
+    function removeElement(uint _i) public {
+        changeArray[_i] =  changeArray[changeArray.length - 1];
+        changeArray.pop();
+    }
+
+    //5. create a function called test which pushes 1 2 3 4 into changeArray
+    
+    function test() public {
+
+        /* 
+        changeArray.push(1);
+        changeArray.push(2);
+        changeArray.push(3);
+        changeArray.push(4);
+        */
+
+        //using for to push into changeArray
+        for(uint i = 1; i <= 4; i++) {
+            changeArray.push(i);
+        }    
+    }
+
+
+    //printing all array element
+    function getAllElements() public view returns(uint[] memory) {
+        return changeArray;
+    }
+
     }
 }
