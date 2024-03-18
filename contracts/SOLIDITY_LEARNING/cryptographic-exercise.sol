@@ -16,8 +16,34 @@
 pragma solidity ^0.8.21;
 
 // Oralce dynamic feeds 
+//1.
+contract Oracle {
+
+    address admin;
+    uint public rand;
+
+//2.
+    constructor() {
+        admin = msg.sender;
+    }
+
+//3.
+    function setRand(uint _rand) public {
+       //4.
+        require(msg.sender == admin, "You are not the caller");
+        rand = _rand;
+    }
+
+}
 
 contract GenerateRandomNumber {
+
+    Oracle oracle; //5.
+
+    //6.
+    constructor(address _oracleAddress) {
+        oracle = Oracle(_oracleAddress);
+    }
 
     // Build a random number generator which takes an input range and uses cryptographic hashing 
     // modulo (%) - so by computing against the remainder we will be able to produce a random number within a range 
@@ -26,9 +52,7 @@ contract GenerateRandomNumber {
     function randMod(uint range) external view returns(uint) {
         // grab information from the blockchain randomly to generate random numbers - we need something dynamically changing
         // abi.encodePacked concatonates arguments nicely 
-        return uint(keccak256(abi.encodePacked(block.timestamp, block.difficulty, msg.sender))) % range;
+        return uint(keccak256(abi.encodePacked(oracle.rand, block.timestamp, block.difficulty, msg.sender))) % range;
     }
 
 }
-
-
