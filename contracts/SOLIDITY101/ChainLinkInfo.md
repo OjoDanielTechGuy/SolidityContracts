@@ -1,5 +1,7 @@
 # ABOUT DATA CHAIN - ORACLE
 
+![image](https://github.com/OjoDanielTechGuy/SolidityContracts/assets/59149661/e5a2903c-234a-4ba5-87f5-1a563a92f8e0)
+
 ## *ORACLE PROBLEM*
 This paradox is commonly known as the Oracle Problem. In a nutshell, the oracle problem refers to the conflict between security, authenticity, and trust in third-party oracles for the trustless execution of smart contracts.
 
