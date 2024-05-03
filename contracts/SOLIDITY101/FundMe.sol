@@ -42,6 +42,26 @@ contract FundMe {
             address funder = funders[funderIndex];
             addressToAmountFunded[funder] = 0;
         }
+
+        //resetting the array
+        funders = new address[](0);
+
+        //to withdraw the funds, transfer, send, call
+
+        // //transfer
+        // payable (msg.sender).transfer(address(this).balance);
+
+        // //send
+        // bool sendSuccess = payable (msg.sender).send(address(this).balance);
+        // require(sendSuccess, "Call failed");
+
+        //call
+        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call failed");
+
+        //Call is the recommended way of sending ether
+
+        
     }
 
 
