@@ -73,13 +73,14 @@ contract FundMe {
         //call
         (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
         require(callSuccess, "Call failed");
+        revert();
 
         //Call is the recommended way of sending ether
     }
 
     //modifier to allow easy replication of securing function
     modifier onlyOwner() {
-        // require(msg.sender == i_owner, "Sender is not owner of contract");
+        // require(msg.sender == i_owner, NotOwner);
         //apply condition to activate the custom error
         if(msg.sender != i_owner) {
             revert NotOwner();
