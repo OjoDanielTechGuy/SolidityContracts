@@ -13,6 +13,7 @@ pragma solidity ^0.8.21;
 error NotOwner();
 
 contract FundMe {
+
     using PriceConverter for uint;
 
     uint public MINIMUM_USD = 5e18; //5 ETH
@@ -88,5 +89,12 @@ contract FundMe {
         _;
     }
 
+    fallback() external payable {
+        fund();
+    }
+
+    receive() external payable {
+        fund();
+    }
 
 }
