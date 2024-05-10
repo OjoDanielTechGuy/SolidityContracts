@@ -9,12 +9,27 @@ import "./PriceConverter.sol";
 
 pragma solidity ^0.8.21;
 
+//creating custom error to save gas
+error NotOwner();
+
 contract FundMe {
     using PriceConverter for uint;
 
-    uint minimumUSD = 5e18; //5 ETH
+    uint public MINIMUM_USD = 5e18; //5 ETH
+    //GAS fees, using constant = 303 
+    //GAS fees, without constant = 2402
 
     //1 ETH = 1e18
+
+    //global variable
+    address public i_owner;
+    //GAS fees using immutable = 439
+    //GAS fees using non-immutable = 2,574
+
+    //constructor to initialize upon contract deployment
+    constructor() {
+        i_owner = msg.sender;
+    }
 
     //array to collate funders
     address[] public funders;
@@ -25,7 +40,7 @@ contract FundMe {
     //funtion to fund the account
     function fund() public payable {
 
-        require(msg.value.getConversionRate() >= minimumUSD, "Insufficient funds. The minimum funding amount is 5 ETH.");
+        require(msg.value.getConversionRate() >= MINIMUM_USD, "Insufficient funds. The minimum funding amount is 5 ETH.");
         //1 ** 10 ** 18, 1000000000000000000
 
         funders.push(msg.sender);
@@ -35,7 +50,7 @@ contract FundMe {
 
     }
 
-    function withdraw() public{
+    function withdraw() public onlyOwner {
 
         //starting index, ending index, 
         for(uint funderIndex = 0; funderIndex < funders.length; funderIndex++) {
@@ -60,8 +75,16 @@ contract FundMe {
         require(callSuccess, "Call failed");
 
         //Call is the recommended way of sending ether
+    }
 
-        
+    //modifier to allow easy replication of securing function
+    modifier onlyOwner() {
+        // require(msg.sender == i_owner, "Sender is not owner of contract");
+        //apply condition to activate the custom error
+        if(msg.sender != i_owner) {
+            revert NotOwner();
+        }
+        _;
     }
 
 
