@@ -15,7 +15,11 @@
 
 ---
 
-#### Deploying to Blockchain
+#### Deploying to Blockchain 
+
+- Check Forge Information
+   > ***run forge --help***
+
 - Run the blockchain locally by typing running ***anvil*** in the terminal directory
    > It displays the public keys, private keys and rpc url
 - Open another terminal while local blockchain terminal is been run
