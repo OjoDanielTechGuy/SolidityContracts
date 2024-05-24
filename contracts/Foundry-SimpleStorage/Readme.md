@@ -25,7 +25,7 @@
 - Open another terminal while local blockchain terminal is been run
 - To Deploy
   > Run ***forge create (name of smart contract)*** OR
-  > Run ***forge create (name of contract) ---rpc-url (url gotten from running local blockchain) --private-key (copy and paste the private key)
+  > Run ***forge create (name of contract) ---rpc-url (url gotten from running local blockchain) --private-key (copy and paste the private key)***
 
 
 #### ***Note: In VSCode Extensions install Nomic (Solidity), Even Better TOML***
