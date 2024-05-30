@@ -38,4 +38,10 @@
 - This effectively clears your command history. Try hitting the 'up' arrow on your keyboard - you will not return any previously entered commands. To further test this, you can use the history keyword:
   > **history** then click on **clear**
 
+#### Private Key Safety2:
+- Do not put your private key directly on the terminal but instead:
+  > Create a **.env** file in your directory
+  > Type in PRIVATE_KEY and RPC_URL then insert thier phrase respectively
+- In running your code to simulate on-chain transaction: replace your localhost and private key numbers with $PRIVATE_KEY and $RPC_URL
+
 #### ***Note: In VSCode Extensions install Nomic (Solidity), Even Better TOML***
