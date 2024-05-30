@@ -40,7 +40,7 @@
 
 #### Private Key Safety2:
 - Do not put your private key directly on the terminal but instead:
-  > Create a **.env** file in your directory
+  > Create a **.env** file in your directory, add it the to the shell by typing **source .evn**
   > Type in PRIVATE_KEY and RPC_URL then insert thier phrase respectively
 - In running your code to simulate on-chain transaction: replace your localhost and private key numbers with $PRIVATE_KEY and $RPC_URL
 
