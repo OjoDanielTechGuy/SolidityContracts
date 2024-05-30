@@ -23,9 +23,10 @@
 - Run the blockchain locally by typing running ***anvil*** in the terminal directory
    > It displays the public keys, private keys and rpc url
 - Open another terminal while local blockchain terminal is been run
-- To Deploy
-  > Run ***forge create (name of smart contract)*** OR
-  > Run ***forge create (name of contract) ---rpc-url (url gotten from running local blockchain) --private-key (copy and paste the private key)***
+- To Deploy the script
+  > Run ***forge script script/(name of smart contract)*** OR
+- To simulate on-chain transaction
+  > Run ***forge script script/(name of contract) ---rpc-url (http://localhost from running local blockchain) --broadcast --private-key (copy and paste the private key)*** to simulate on-chain transaction
 
 ---
 
