@@ -7,6 +7,8 @@ import "./safemath.sol";
 contract ZombieAttack is ZombieHelper {
 
     using SafeMath for uint256;
+    using SafeMath16 for uint16;
+    using SafeMath32 for uint32;
 
     uint randNonce = 0;
 
