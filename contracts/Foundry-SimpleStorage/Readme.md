@@ -45,3 +45,8 @@
 - In running your code to simulate on-chain transaction: replace your localhost and private key numbers with $PRIVATE_KEY and $RPC_URL
 
 #### ***Note: In VSCode Extensions install Nomic (Solidity), Even Better TOML***
+
+#### To Convert the hexadecimal from the trasaction to decimal
+cast --to-base hexadecimal-code dec
+
+***Note: Transaction section is what is sent to the blockchain.***
